@@ -339,18 +339,20 @@
   .hero-section {
     position: relative;
     overflow: hidden;
-    padding: 4rem 0;
+    padding: 1rem 0;
   }
   
   @media (min-width: 768px) {
     .hero-section {
-      padding: 0rem 0;
+      padding: 0rem;
+      margin: 0rem;
     }
   }
   
   @media (min-width: 1024px) {
     .hero-section {
-      padding: 5rem 0;
+      padding: 0rem;
+      margin: 0rem;
     }
   }
   
@@ -534,10 +536,12 @@
   .hero-image {
     position: relative;
     z-index: 10;
-    width: 100%;
-    height: auto;
+    width: 35rem;
+    height: 35rem;
   }
   
+
+
   /* Timeline Section */
   .timeline-section {
     padding: 0 0 4rem;
@@ -1313,12 +1317,11 @@
   /* Footer */
   .footer {
     border-top: 1px solid hsl(var(--border));
-    padding: 3rem 0 4rem;
   }
   
   @media (min-width: 768px) {
     .footer {
-      padding: 4rem 0;
+      padding-top: 4rem;
     }
   }
   
@@ -1454,4 +1457,271 @@
     color: hsl(var(--muted-foreground));
   }
   
+  
+
+        /* Testimonials Section */
+        .testimonials-section {
+            padding: 2rem 0;
+        }
+
+        .testimonials-container {
+            position: relative;
+            overflow: hidden;
+            padding: 1rem 0;
+        }
+
+        .testimonials-track {
+            display: flex;
+            gap: 1.5rem;
+            width: max-content;
+            animation: scroll 60s linear infinite;
+        }
+
+        .testimonials-track:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .testimonial-item {
+            flex-shrink: 0;
+            width: 20rem;
+            background-color: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+        }
+
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-avatar {
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .testimonial-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .testimonial-author h4 {
+            font-weight: 700;
+        }
+
+        .testimonial-author p {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .testimonial-content {
+            color: var(--text-muted);
+        }
+
+        .testimonial-stars {
+            margin-top: 1rem;
+            display: flex;
+        }
+
+        .testimonial-stars i {
+            color: gold;
+            margin-right: 0.25rem;
+        }
+
+
+
+  /* My Work Section */
+    .my-work-section {
+        padding: 5rem 0;
+    }
+
+    .work-slider-container {
+        position: relative;
+        max-width: 1000px;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+
+    .work-slider-wrapper {
+        position: relative;
+    }
+
+    /* Hide radio buttons */
+    .work-slider-radio {
+        position: absolute;
+        opacity: 0;
+    }
+
+    /* Slides container */
+    .work-slides {
+        display: flex;
+        width: 300%; /* 3 slides */
+        transition: transform 0.5s ease;
+    }
+
+    /* Individual slide */
+    .work-slide {
+        width: 33.333%;
+        padding: 0 1rem;
+    }
+
+    /* Work row instead of grid */
+    .work-row {
+        display: flex;
+        gap: 1.5rem;
+        justify-content: center;
+    }
+
+    .work-item {
+        flex: 0 0 auto;
+        width: 200px;
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: var(--shadow-sm);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        height: 200px;
+    }
+
+    .work-item:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-md);
+    }
+
+    .work-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* Control the slides with radio buttons */
+    #slide1:checked ~ .work-slides {
+        transform: translateX(0);
+    }
+
+    #slide2:checked ~ .work-slides {
+        transform: translateX(-33.333%);
+    }
+
+    #slide3:checked ~ .work-slides {
+        transform: translateX(-66.666%);
+    }
+
+    /* Style the labels as navigation dots */
+    .work-slider-nav {
+        display: flex;
+        justify-content: center;
+        margin-top: 2rem;
+        gap: 0.5rem;
+    }
+
+    .work-slider-nav label {
+        width: 0.75rem;
+        height: 0.75rem;
+        border-radius: 50%;
+        background-color: grey;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+    }
+
+    /* Active dot */
+    #slide1:checked ~ .work-slider-nav label[for="slide1"],
+    #slide2:checked ~ .work-slider-nav label[for="slide2"],
+    #slide3:checked ~ .work-slider-nav label[for="slide3"] {
+        background-color:#9B8FD6;
+    }
+
+    /* Arrow navigation */
+    .work-slider-arrows {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        transform: translateY(-50%);
+        display: flex;
+        justify-content: space-between;
+        padding: 0 1rem;
+        pointer-events: none;
+    }
+
+    .work-arrow {
+        width: 3rem;
+        height: 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(139, 23, 23, 0.8);
+        border-radius: 50%;
+        cursor: pointer;
+        box-shadow: var(--shadow-sm);
+        pointer-events: auto;
+        color: var(--text-color);
+        font-size: 1.25rem;
+        transition: background-color 0.2s ease;
+        z-index: 10;
+    }
+
+    .work-arrow:hover {
+        background-color: var(--primary-color);
+        color: rgb(255, 255, 255);
+    }
+
+    /* Hide specific arrows based on active slide */
+    #slide1:checked ~ .work-slider-arrows .arrow-prev {
+        visibility: hidden;
+    }
+
+    #slide3:checked ~ .work-slider-arrows .arrow-next {
+        visibility: hidden;
+    }
+
+    /* Slide navigation */
+    .slide-nav {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 1rem;
+    }
+
+    .slide-nav-item {
+        display: none;
+    }
+
+    #slide1:checked ~ .slide-nav .slide-nav-1,
+    #slide2:checked ~ .slide-nav .slide-nav-2,
+    #slide3:checked ~ .slide-nav .slide-nav-3 {
+        display: block;
+    }
+
+    /* Responsive adjustments for work items */
+    @media (max-width: 768px) {
+        .work-row {
+            flex-wrap: wrap;
+        }
+        
+        .work-item {
+            width: calc(50% - 0.75rem);
+            margin-bottom: 1.5rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .work-item {
+            width: 100%;
+        }
+    }
+
   
