@@ -401,7 +401,7 @@
   
   @media (min-width: 768px) {
     .hero-grid {
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 2fr 1fr;
       align-items: center;
       padding-top: 3rem;
     }
