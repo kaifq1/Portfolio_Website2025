@@ -163,6 +163,49 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   })
   
+
+
+
+  // Full screen image viewer functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const workItems = document.querySelectorAll('.work-item img');
+    const fullscreenViewer = document.querySelector('.fullscreen-viewer');
+    const fullscreenImage = document.querySelector('.fullscreen-image');
+    const closeButton = document.querySelector('.close-viewer');
+
+    // Open fullscreen viewer
+    workItems.forEach(item => {
+        item.addEventListener('click', function() {
+            fullscreenImage.src = this.src;
+            fullscreenImage.alt = this.alt;
+            fullscreenViewer.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        });
+    });
+
+    // Close fullscreen viewer
+    closeButton.addEventListener('click', function() {
+        fullscreenViewer.classList.remove('active');
+        document.body.style.overflow = ''; // Restore scrolling
+    });
+
+    // Also close when clicking outside the image
+    fullscreenViewer.addEventListener('click', function(e) {
+        if (e.target === fullscreenViewer) {
+            fullscreenViewer.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+
+    // Close on escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && fullscreenViewer.classList.contains('active')) {
+            fullscreenViewer.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+});
   
   
   
+
