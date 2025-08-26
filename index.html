@@ -351,110 +351,196 @@
         </div>
       </div>
     </section>
-
 <!-- Fullscreen Image Viewer -->
-<div class="fullscreen-viewer">
-    <button class="close-viewer">
-        <i data-lucide="x" class="close-icon"></i>
-    </button>
-    <img src="" alt="" class="fullscreen-image">
+<div class="fullscreen-viewer" style="display:none;">
+  <button class="close-viewer" aria-label="Close">
+    <i data-lucide="x" class="close-icon"></i>
+  </button>
+  <img src="" alt="" class="fullscreen-image">
 </div>
-<!-- My Work Section -->
-    <section id="Work" class="skills-section">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">
+<!-- My Work Section: Modern Horizontal Scroll Gallery -->
+<section id="Work" class="gallery-slider">
+<div style="text-align:center; margin-bottom: 2rem;">
+ <h2 class="section-title">
           My<span class="text-primary"> Work</span>
         </h2>
-        <p class="section-description">
-          A visual showcase of my recent projects and work samples.
-        </p>
-      </div>
-        <div class="work-slider-container">
-            <div class="work-slider-wrapper">
-                <!-- Radio buttons for controlling the slider -->
-                <input type="radio" name="work-slider" id="slide1" class="work-slider-radio" checked>
-                <input type="radio" name="work-slider" id="slide2" class="work-slider-radio">
-               <!-- <input type="radio" name="work-slider" id="slide3" class="work-slider-radio"> -->
-                
-                <!-- Slides container -->
-                <div class="work-slides">
-                    <!-- Slide indicators
-                    <div class="slide-nav">
-                        <div class="slide-nav-item slide-nav-1">Images 1-4</div>
-                        <div class="slide-nav-item slide-nav-2">Images 5-8</div>
-                        <div class="slide-nav-item slide-nav-3">Images 9-12</div>
-                    </div>
-                -->
-                    <!-- Slide 1 -->
-                    <div class="work-slide">
-                        <div class="work-row">
-                            <div class="work-item">
-                                <img src="workpic1.jpg" alt="Work 1">
-                            </div>
-                            <div class="work-item">
-                                <img src="workpic2.jpg" alt="Work 2">
-                            </div>
-                            <div class="work-item">
-                                <img src="workpic3.jpg" alt="Work 3">
-                            </div>
-                            <div class="work-item">
-                                <img src="workpic4.jpg" alt="Work 4">
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Slide 2 -->
-                    <div class="work-slide">
-                        <div class="work-row">
-                            <div class="work-item">
-                                <img src="workpic5.jpg" alt="Work 5">
-                            </div>
-                            <div class="work-item">
-                                <img src="workpic6.jpg" alt="Work 6">
-                            </div>
-                            <div class="work-item">
-                                <img src="workpic7.jpg" alt="Work 7">
-                            </div>
-                            <div class="work-item">
-                                <img src="workpic8.jpg" alt="Work 8">
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Slide 3-->
-                    
-                </div>
-          
-                <!-- Navigation dots -->
-                <div class="work-slider-nav">
-                    <label for="slide1"></label>
-                    <label for="slide2"></label>
-                    <!--<label for="slide3"></label> -->
-                </div>
-                
-                <!-- Navigation arrows 
-                <div class="work-slider-arrows">
-                    <label for="slide1" class="work-arrow arrow-prev">
-                        <i class="fas fa-chevron-left"></i>
-                    </label>
-                    <label for="slide3" class="work-arrow arrow-next">
-                        <i class="fas fa-chevron-right"></i>
-                    </label>
-                </div>
-            -->
-                <!-- Slide indicators
-                <div class="slide-nav">
-                    <div class="slide-nav-item slide-nav-1">Images 1-4</div>
-                    <div class="slide-nav-item slide-nav-2">Images 5-8</div>
-                    <div class="slide-nav-item slide-nav-3">Images 9-12</div>
-                </div>
-            -->
-            </div>
-        </div>
-    </div>
+  <p class="section-description">
+    A visual showcase of my recent projects and work samples.
+  </p>
+  </div>
+  <div class="slider-container">
+  <div class="slider">
+    <div class="slide"><img src="workpic1.jpg" alt="Work 1"></div>
+    <div class="slide"><img src="workpic2.jpg" alt="Work 2"></div>
+    <div class="slide"><img src="workpic3.jpg" alt="Work 3"></div>
+    <div class="slide"><img src="workpic4.jpg" alt="Work 4"></div>
+    <div class="slide"><img src="workpic5.jpg" alt="Work 5"></div>
+    <div class="slide"><img src="workpic6.jpg" alt="Work 6"></div>
+    <div class="slide"><img src="workpic7.jpg" alt="Work 7"></div>
+    <div class="slide"><img src="workpic8.jpg" alt="Work 8"></div>
+  </div>
+  <div class="slider-progress-bar">
+    <div class="slider-progress"></div>
+  </div>
+  </div>
 </section>
-
+<script>
+  // Hover effect
+  document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.gallery-slider .slide').forEach(element => {
+    element.addEventListener('mouseover', () => {
+    element.style.transform = 'scale(1.05)';
+    });
+    element.addEventListener('mouseout', () => {
+    element.style.transform = 'scale(1)';
+    });
+    // Fullscreen viewer
+    element.addEventListener('click', () => {
+    const img = element.querySelector('img');
+    const viewer = document.querySelector('.fullscreen-viewer');
+    const viewerImg = viewer.querySelector('.fullscreen-image');
+    viewerImg.src = img.src;
+    viewerImg.alt = img.alt;
+    viewer.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    });
+  });
+  // Close fullscreen
+  document.querySelector('.fullscreen-viewer .close-viewer').addEventListener('click', () => {
+    document.querySelector('.fullscreen-viewer').style.display = 'none';
+    document.body.style.overflow = '';
+  });
+  // Close on background click
+  document.querySelector('.fullscreen-viewer').addEventListener('click', (e) => {
+    if (e.target.classList.contains('fullscreen-viewer')) {
+    document.querySelector('.fullscreen-viewer').style.display = 'none';
+    document.body.style.overflow = '';
+    }
+  });
+  // Progress bar
+  const slider = document.querySelector('.gallery-slider .slider');
+  const progress = document.querySelector('.slider-progress');
+  slider.addEventListener('scroll', () => {
+    const maxScroll = slider.scrollWidth - slider.clientWidth;
+    const percent = maxScroll ? (slider.scrollLeft / maxScroll) * 100 : 0;
+    progress.style.width = percent + '%';
+  });
+  // Set initial progress
+  slider.dispatchEvent(new Event('scroll'));
+  });
+</script>
+<style>
+  .gallery-slider {
+  padding: 5rem 2rem;
+  background-color: inherit;
+  }
+  .gallery-slider h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  color: #333;
+  }
+  .slider-container {
+  position: relative;
+  }
+  .gallery-slider .slider {
+  display: flex;
+  overflow-x: scroll;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-behavior: smooth;
+  }
+  .gallery-slider .slider::-webkit-scrollbar {
+  display: none;
+  }
+  .gallery-slider .slide {
+  min-width: 300px;
+  flex-shrink: 0;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+  height: 200px;
+  cursor: pointer;
+  background: #fff;
+  }
+  .gallery-slider .slide img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+  }
+  .gallery-slider .slide:hover {
+  transform: scale(1.05);
+  }
+  .slider-progress-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.2rem;
+  height: 5px;
+  background: #e0e0e0;
+  border-radius: 3px;
+  overflow: hidden;
+  width: 100%;
+  margin: 0 auto;
+  z-index: 2;
+  }
+  .slider-progress {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #7969C9 0%, #4e3fa5 100%);
+  border-radius: 3px;
+  transition: width 0.2s;
+  }
+  /* Fullscreen viewer styles */
+  .fullscreen-viewer {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  animation: fadeIn 0.2s;
+  }
+  .fullscreen-viewer.active {
+  display: flex;
+  }
+  .fullscreen-viewer .close-viewer {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  border: none;
+  color: #fff;
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 10001;
+  border-radius: 50%;
+  padding: 0.5rem 0.7rem;
+  transition: background 0.2s;
+  }
+  .fullscreen-viewer .close-viewer:hover {
+  color: yellow;
+  }
+  .fullscreen-image {
+  max-width: 90vw;
+  max-height: 80vh;
+  border-radius: 1rem;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  background: #fff;
+  object-fit: contain;
+  margin: auto;
+  display: block;
+  }
+  @keyframes fadeIn {
+  from { opacity: 0;}
+  to { opacity: 1;}
+  }
+</style>
 
     <!-- Skills Section -->
     <section id="skills" class="skills-section">
@@ -1343,6 +1429,10 @@
   <script src="script.js"></script>
 </body>
 </html>
+
+
+
+
 
 
 
